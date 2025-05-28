@@ -46,16 +46,16 @@ function love.update(dt)
     end
 
     --check where the player is
-    if Player.x < 960 and Player.y < 540 then
+    if Player.x < TopLeftRect.w and Player.y < TopLeftRect.h then
         CurrentGamePosition = GamePosition.top_left
         GameText="Top Left Game"
-    elseif Player.x < 960 and Player.y > 540 then
+    elseif Player.x < TopLeftRect.w and Player.y > TopLeftRect.h then
         CurrentGamePosition = GamePosition.bottom_left
         GameText="Bottom Left Game"
-    elseif Player.x > 960 and Player.y < 540 then
+    elseif Player.x > TopLeftRect.w and Player.y < TopRightRect.h then
         CurrentGamePosition = GamePosition.top_right
         GameText="Top Right Game"
-    elseif Player.x > 960 and Player.y > 540 then
+    elseif Player.x > TopRightRect.w and Player.y > TopLeftRect.h then
         CurrentGamePosition = GamePosition.bottom_right
         GameText="Bottom Right Game"
     end
@@ -76,6 +76,7 @@ function love.draw()
     love.graphics.setCanvas(BottomLeftCanvas)
     love.graphics.clear(1, 1, 0, 1)
     love.graphics.setColor( 0, 0, 0 )
+    
 
     love.graphics.setCanvas()
     love.graphics.clear(0, 0, 0, 1)
