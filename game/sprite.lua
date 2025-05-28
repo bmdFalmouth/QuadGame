@@ -17,12 +17,13 @@ function Sprite:new(o, image,colour, x, y, w, h)
     if self.image == nil then
         --fill image with a default color
         self.image = love.graphics.newImage("default.png") -- Replace with a valid default image path
+        print("Sprite image is nil, using default image")
+        print(self.image)
     end
     return o
 end
 
 function Sprite:draw()
-    love.graphics.setColor(self.colour)
-    love.graphics.draw(self.image, self.rect.x, self.rect.y, 0, self.rect.w , self.rect.h)
-    love.graphics.setColor(1, 1, 1, 1) -- Reset color to white
+    love.graphics.setColor(0,0,0,1)
+    love.graphics.draw(self.image, self.rect.x, self.rect.y, 0, self.rect.w, self.rect.h)
 end

@@ -36,12 +36,15 @@ function love.load()
         
     end
     }
-    topLeftGame = GameScreen:new(nil, "Top Left Game", TopLeftCanvas, TopLeftRect)
-    bottomLeftGame = GameScreen:new(nil, "Bottom Left Game", BottomLeftCanvas, BottomLeftRect)
-    topRightGame = GameScreen:new(nil, "Top Right Game", TopRightCanvas, TopRightRect)
-    bottomRightGame = GameScreen:new(nil, "Bottom Right Game", BottomRrightCanvas, BottomRightRect)
+    local topLeftGame = GameScreen:new(nil, "Top Left Game", TopLeftCanvas, TopLeftRect)
+    local bottomLeftGame = GameScreen:new(nil, "Bottom Left Game", BottomLeftCanvas, BottomLeftRect)
+    local topRightGame = GameScreen:new(nil, "Top Right Game", TopRightCanvas, TopRightRect)
+    local bottomRightGame = GameScreen:new(nil, "Bottom Right Game", BottomRrightCanvas, BottomRightRect)
     Games={topLeftGame, bottomLeftGame, topRightGame, bottomRightGame}
     CurrentGame=Games[CurrentGamePosition]
+
+    local topLeftBackground = Sprite:new(nil,nil, {1, 0, 0, 1}, 0, 0, TopLeftRect.w, TopLeftRect.h)
+    topLeftGame:addSprite(topLeftBackground)
 end
 
 function love.update(dt)
