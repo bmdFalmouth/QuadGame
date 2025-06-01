@@ -1,4 +1,5 @@
 require "game"
+io.stdout:setvbuf("no")
 
 --960
 --540
@@ -28,14 +29,8 @@ function love.load()
     TopLeftCanvas = love.graphics.newCanvas(TopLeftRect.w, TopLeftRect.h)
     BottomLeftCanvas = love.graphics.newCanvas(BottomRightRect.w, BottomRightRect.h)
 
-    Player = {x=100,y=300,width=50,height=50,moveSpeed=100,
-    
-    move=function (self, dx, dy,dt)
-        self.x = self.x + (dx*self.moveSpeed * dt)
-        self.y = self.y + (dy*self.moveSpeed * dt)
-        
-    end
-    }
+    Player =Sprite:new(nil, nil,{r=255, g=0, b=0, a=255}, 10, 10, 5, 5) -- Example player sprite
+
     local topLeftGame = GameScreen:new(nil, "Top Left Game", TopLeftCanvas, TopLeftRect)
     local bottomLeftGame = GameScreen:new(nil, "Bottom Left Game", BottomLeftCanvas, BottomLeftRect)
     local topRightGame = GameScreen:new(nil, "Top Right Game", TopRightCanvas, TopRightRect)
@@ -43,7 +38,7 @@ function love.load()
     Games={topLeftGame, bottomLeftGame, topRightGame, bottomRightGame}
     CurrentGame=Games[CurrentGamePosition]
 
-    local topLeftBackground = Sprite:new(nil,nil, {1, 0, 0, 1}, 0, 0, TopLeftRect.w, TopLeftRect.h)
+    local topLeftBackground = Sprite:new(nil,nil,{r=255, g=255, b=255, a=255}, 0, 0, TopLeftRect.w, TopLeftRect.h)
     topLeftGame:addSprite(topLeftBackground)
 end
 
@@ -51,16 +46,16 @@ function love.update(dt)
     -- Update logic here
     if love.keyboard.isDown("up") then
         --Player.y = Player.y - Player.moveSpeed * dt
-        Player:move(0, -1, dt)
+        --Player:move(0, -1, dt)
     end
     if love.keyboard.isDown("down") then
-        Player:move(0, 1, dt)
+        --Player:move(0, 1, dt)
     end
     if love.keyboard.isDown("left") then
-        Player:move(-1, 0, dt)
+        --Player:move(-1, 0, dt)
     end
     if love.keyboard.isDown("right") then
-        Player:move(1, 0, dt)
+        --Player:move(1, 0, dt)
     end
 
     CurrentGame:update(dt)
@@ -71,8 +66,10 @@ function love.draw()
     love.graphics.setCanvas()
     love.graphics.clear(0, 0, 0, 1)
     love.graphics.setColor( 0, 0, 0 )
-    CurrentGame:draw()
-    love.graphics.rectangle("fill", Player.x, Player.y, Player.width, Player.height)
-    love.graphics.print(CurrentGame.name, 30, 30)
+    --CurrentGame:draw()
+    love.graphics.setColor( 255, 255, 255 )
+    Player:draw()
+    
+    --love.graphics.print(CurrentGame.name, 30, 200)
 
 end
